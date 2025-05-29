@@ -1,0 +1,7 @@
+---
+description: src/database/schema/*.ts
+globs: 
+alwaysApply: false
+---
+
+- Schema files have always this naming pattern `<name>.schema.ts`
