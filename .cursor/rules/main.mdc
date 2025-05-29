@@ -12,6 +12,3 @@ alwaysApply: true
 - All route files must be written in **TypeScript React** (`.tsx`).
 - Use alias imports: `@` resolves to root `./`.
 - Don't use default exports in route files.
-
-# LIBRARIES
-- We're using trpc >=11.0 (don't ever suggest older API)

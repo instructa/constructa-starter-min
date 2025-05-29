@@ -1,6 +1,6 @@
 ---
 description: 
-globs: app/routes/**
+globs: src/app/routes/**
 alwaysApply: false
 ---
 # Route File Rule
