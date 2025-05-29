@@ -1,5 +1,5 @@
 {
-    "name": "ex0",
+    "name": "tanstack-starter-min",
     "private": true,
     "sideEffects": false,
     "type": "module",
@@ -8,12 +8,8 @@
         "build": "vinxi build",
         "start": "vinxi start",
         "test": "vitest",
-        "db:pull": "npx drizzle-kit pull",
-        "db:generate": "npx drizzle-kit generate",
-        "db:migrate": "npx drizzle-kit migrate",
         "biome:fix:unsafe": "biome check --fix --unsafe",
-        "biome:check": "biome check",
-        "ex0": "tsx cli/index.ts"
+        "biome:check": "biome check"
     },
     "dependencies": {
         "@radix-ui/react-avatar": "^1.1.7",
