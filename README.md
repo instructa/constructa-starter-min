@@ -1,41 +1,191 @@
-# AI Starter
+# 🚀 TanStack Starter
 
-This is a starter project template.
+<div align="center">
+  <p><strong>A modern, full-stack React starter built with TanStack's cutting-edge tools</strong></p>
+  
+  [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org/)
+  [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+  [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+</div>
 
-## Available Commands
+## ✨ Features
 
-### Project CLI (`pnpm ex0`)
+### 🏗️ **Core Framework**
+- **[TanStack Start](https://tanstack.com/start)** - Modern full-stack React framework
+- **[React 19](https://react.dev/)** - Latest React with enhanced performance
+- **[TypeScript](https://typescriptlang.org/)** - Full type safety throughout
 
-This project includes a custom CLI tool for common tasks. Run it using `pnpm ex0 <command>`.
+### 🛣️ **Routing & Data**
+- **[TanStack Router](https://tanstack.com/router)** - Type-safe routing with file-based routing
+- **[TanStack Query](https://tanstack.com/query)** - Powerful data fetching and caching
+- **[TanStack Table](https://tanstack.com/table)** - Headless table components
 
-| Command    | Description                                                                | Args                 |
-| :--------- | :------------------------------------------------------------------------- | :------------------- |
-| `init`     | Initialize the project (dependencies, DB setup, Docker)                    |                      |
-| `stop`     | Stop running Docker containers                                             |                      |
-| `reload`   | Reload Docker containers with updated configuration                        |                      |
-| `recreate` | Recreate Docker containers and volume (WARNING: deletes all data!)         |                      |
-| `testdata` | Create or delete seed test data in the database                            | `--create`, `--delete` |
-| `deploy`   | [TODO] Deploy the application                                              |                      |
+### 🎨 **UI & Styling**
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Modern utility-first CSS framework
+- **[shadcn/ui](https://ui.shadcn.com/)** - Beautiful, accessible component library
+- **[Radix UI](https://radix-ui.com/)** - Unstyled, accessible components
+- **[Framer Motion](https://framer.com/motion/)** - Smooth animations and transitions
+- **[Lucide Icons](https://lucide.dev/)** - Beautiful, consistent icons
+- **Theme Support** - Dark/light mode with `next-themes`
 
-### npm/pnpm Scripts
+### 🛠️ **Developer Experience**
+- **[Vinxi](https://vinxi.vercel.app/)** - Modern build tool and dev server
+- **[Vitest](https://vitest.dev/)** - Fast unit testing framework
+- **[Biome](https://biomejs.dev/)** - Fast linter and formatter
+- **[pnpm](https://pnpm.io/)** - Efficient package manager
 
-Standard project scripts are available via `pnpm <script-name>`.
+### 🤖 **Advanced Features**
+- **[AI SDK](https://sdk.vercel.ai/)** - AI-powered functionality
+- **[Drizzle ORM](https://orm.drizzle.team/)** - Type-safe database toolkit
+- **API Routes** - Built-in API support
+- **File Uploads** - Ready-to-use upload functionality
 
-| Script             | Description                                      | Underlying Command                                                                       |
-| :----------------- | :----------------------------------------------- | :--------------------------------------------------------------------------------------- |
-| `dev`              | Start development server                         | `vinxi dev`                                                                              |
-| `build`            | Build the project                                | `vinxi build`                                                                            |
-| `start`            | Start production server                          | `vinxi start`                                                                            |
-| `test`             | Run tests                                        | `vitest`                                                                                 |
-| `db:pull`          | Pull database schema using Drizzle Kit           | `npx drizzle-kit pull`                                                                   |
-| `db:generate`      | Generate Drizzle migrations/schema changes       | `npx drizzle-kit generate`                                                               |
-| `db:migrate`       | Apply Drizzle migrations                         | `npx drizzle-kit migrate`                                                                |
-| `biome:fix:unsafe` | Fix code style issues (includes unsafe fixes)    | `biome check --fix --unsafe`                                                             |
-| `biome:check`      | Check code style issues                          | `biome check`                                                                            |
-| `auth:init`        | Generate Better Auth schema                      | `npx -y @better-auth/cli@latest generate --config server/auth.ts --output server/db/auth.schema.ts` |
-| `ex0`              | Run the custom project CLI                       | `tsx cli/index.ts`                                                                       |
+## 🚀 Quick Start
 
-## License
+### Prerequisites
+- **Node.js** 18+ 
+- **pnpm** (recommended package manager)
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-# tanstack-starter-min
+### Installation
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd tanstack-starter-instructa
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+```
+
+### Available Scripts
+
+```bash
+# Development
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm start        # Start production server
+
+# Testing
+pnpm test         # Run tests with Vitest
+
+# Database
+pnpm db:generate  # Generate database migrations
+pnpm db:migrate   # Run database migrations
+pnpm db:pull      # Pull database schema
+
+# Code Quality
+pnpm biome:check  # Check code formatting and linting
+pnpm biome:fix:unsafe # Fix code issues (unsafe)
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── routes/           # File-based routing
+│   │   ├── __root.tsx   # Root layout
+│   │   ├── index.tsx    # Home page
+│   │   └── api/         # API routes
+│   ├── dashboard/       # Dashboard features
+│   └── styles/          # Global styles
+├── components/
+│   └── ui/              # shadcn/ui components
+├── utils/               # Utility functions
+└── types/               # TypeScript type definitions
+```
+
+## 🎯 Key Technologies
+
+| Technology | Purpose | Documentation |
+|------------|---------|---------------|
+| **TanStack Start** | Full-stack framework | [Docs](https://tanstack.com/start) |
+| **TanStack Router** | Type-safe routing | [Docs](https://tanstack.com/router) |
+| **TanStack Query** | Data fetching | [Docs](https://tanstack.com/query) |
+| **Tailwind CSS** | Styling framework | [Docs](https://tailwindcss.com/) |
+| **shadcn/ui** | Component library | [Docs](https://ui.shadcn.com/) |
+| **Drizzle ORM** | Database toolkit | [Docs](https://orm.drizzle.team/) |
+
+## 🔧 Configuration
+
+### Environment Setup
+Create a `.env.local` file in the root directory for environment variables:
+
+```env
+# Database
+DATABASE_URL="your-database-url"
+
+# Add other environment variables as needed
+```
+
+### Tailwind CSS
+The project uses Tailwind CSS v4 with the new CSS-first configuration. Styles are configured in:
+- `app.config.ts` - Vite plugin configuration
+- Global styles in `src/app/styles/`
+
+### TypeScript
+- **Path aliases**: `@` resolves to the root `./` directory
+- **Strict mode**: Enabled for maximum type safety
+- **Route files**: Must use `.tsx` extension
+
+## 🧪 Testing
+
+This starter includes Vitest for fast, modern testing:
+
+```bash
+# Run tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test --watch
+```
+
+Test files should be placed alongside your source files with `.test.ts` or `.test.tsx` extensions.
+
+## 📱 Component Library
+
+The project includes a comprehensive set of shadcn/ui components:
+- **Navigation**: Sidebar, Breadcrumb, Tabs
+- **Forms**: Input, Label, Select, Checkbox, Switch
+- **Feedback**: Toast (Sonner), Tooltip, Badge
+- **Layout**: Card, Separator, Sheet, Dialog
+- **Data**: Table, Chart
+- **And many more...**
+
+## 🚀 Deployment
+
+### Build for Production
+```bash
+pnpm build
+```
+
+### Start Production Server
+```bash
+pnpm start
+```
+
+The application is built with TanStack Start and can be deployed to any Node.js hosting platform.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  <p>Built with ❤️ using TanStack's modern React ecosystem</p>
+</div>
+
+
