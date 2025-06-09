@@ -1,16 +1,19 @@
-import { DefaultCatchBoundary } from "@/components/DefaultCatchBoundary"
-import { NotFound } from "@/components/NotFound"
-import { seo } from "@/utils/seo"
 import type { QueryClient } from "@tanstack/react-query"
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router"
 import type * as React from "react"
-import { Providers } from "../providers"
+import { Toaster } from "sonner"
+import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary"
+import { NotFound } from "~/components/NotFound"
+import { ThemeProvider } from "~/components/theme-provider"
+import { getTheme } from "~/lib/theme"
+import { seo } from "~/utils/seo"
+import appCss from "../styles/app.css?url"
 import customCss from "../styles/custom.css?url"
-import appCss from "../styles/index.css?url"
 
 export const Route = createRootRouteWithContext<{
     queryClient: QueryClient
 }>()({
+    loader: () => getTheme(),
     head: () => ({
         meta: [
             {
@@ -75,15 +78,32 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+    const initial = Route.useLoaderData() as Theme
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" className={initial === "system" ? "" : initial}>
             <head>
+                <script
+                    // runs before the CSS is parsed, so there is no flash
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                        (function () {
+                        try {
+                            var t = localStorage.getItem("vite-ui-theme");
+                            if (!t) return;
+                            if (t === "light" || t === "dark") {
+                            document.documentElement.classList.add(t);
+                            }
+                        } catch {}
+                        })();`
+                    }}
+                />
                 <HeadContent />
             </head>
             <body className="">
-                <Providers>
+                <ThemeProvider initial={initial}>
                     <div className="flex min-h-svh flex-col">{children}</div>
-                </Providers>
+                    <Toaster />
+                </ThemeProvider>
                 <Scripts />
             </body>
         </html>

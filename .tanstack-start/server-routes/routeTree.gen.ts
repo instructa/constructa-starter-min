@@ -10,62 +10,49 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
+import type {
+  FileRoutesByPath,
+  CreateServerFileRoute,
+} from '@tanstack/react-start/server'
+import {
+  createServerRoute,
+  createServerFileRoute,
+} from '@tanstack/react-start/server'
 
 // Create/Update Routes
 
-const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
+const rootRoute = createServerRoute()
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-  }
+declare module '@tanstack/react-start/server' {
+  interface FileRoutesByPath {}
 }
+
+// Add type-safety to the createFileRoute function across the route tree
 
 // Create and export the route tree
 
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-}
+export interface FileRoutesByFullPath {}
 
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-}
+export interface FileRoutesByTo {}
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: never
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: never
+  id: '__root__'
   fileRoutesById: FileRoutesById
 }
 
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-}
+export interface RootRouteChildren {}
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-}
+const rootRouteChildren: RootRouteChildren = {}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
@@ -76,12 +63,7 @@ export const routeTree = rootRoute
   "routes": {
     "__root__": {
       "filePath": "__root.tsx",
-      "children": [
-        "/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
+      "children": []
     }
   }
 }

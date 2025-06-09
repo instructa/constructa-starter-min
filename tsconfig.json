@@ -15,11 +15,8 @@
         "forceConsistentCasingInFileNames": true,
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"],
+            "~/*": ["./src/*"]
         },
-        "noEmit": true,
-        "sourceMap": true,
-        "outDir": "dist",
-        "inlineSources": true
+        "noEmit": true
     }
 }
