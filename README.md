@@ -1,6 +1,6 @@
 
 <div align="center">
-  # Constructa Starter Min
+  <h1>Constructa Starter Min</h1>
   <p><strong>A modern Web App Starter Kit based on Tanstack Starter using React, shadcn/ui and Tailwind CSS 4</strong></p>
   
   [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org/)
