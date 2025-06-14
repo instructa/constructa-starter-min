@@ -13,17 +13,11 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as DocsRouteImport } from './routes/docs'
 import { Route as marketingRouteRouteImport } from './routes/(marketing)/route'
 import { Route as marketingIndexRouteImport } from './routes/(marketing)/index'
+import { Route as marketingDocsRouteImport } from './routes/(marketing)/docs'
 
 // Create/Update Routes
-
-const DocsRoute = DocsRouteImport.update({
-  id: '/docs',
-  path: '/docs',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const marketingRouteRoute = marketingRouteRouteImport.update({
   id: '/(marketing)',
@@ -33,6 +27,12 @@ const marketingRouteRoute = marketingRouteRouteImport.update({
 const marketingIndexRoute = marketingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => marketingRouteRoute,
+} as any)
+
+const marketingDocsRoute = marketingDocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
   getParentRoute: () => marketingRouteRoute,
 } as any)
 
@@ -47,12 +47,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof marketingRouteRouteImport
       parentRoute: typeof rootRoute
     }
-    '/docs': {
-      id: '/docs'
+    '/(marketing)/docs': {
+      id: '/(marketing)/docs'
       path: '/docs'
       fullPath: '/docs'
-      preLoaderRoute: typeof DocsRouteImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof marketingDocsRouteImport
+      parentRoute: typeof marketingRouteRouteImport
     }
     '/(marketing)/': {
       id: '/(marketing)/'
@@ -75,13 +75,13 @@ declare module './routes/(marketing)/route' {
     FileRoutesByPath['/(marketing)']['fullPath']
   >
 }
-declare module './routes/docs' {
+declare module './routes/(marketing)/docs' {
   const createFileRoute: CreateFileRoute<
-    '/docs',
-    FileRoutesByPath['/docs']['parentRoute'],
-    FileRoutesByPath['/docs']['id'],
-    FileRoutesByPath['/docs']['path'],
-    FileRoutesByPath['/docs']['fullPath']
+    '/(marketing)/docs',
+    FileRoutesByPath['/(marketing)/docs']['parentRoute'],
+    FileRoutesByPath['/(marketing)/docs']['id'],
+    FileRoutesByPath['/(marketing)/docs']['path'],
+    FileRoutesByPath['/(marketing)/docs']['fullPath']
   >
 }
 declare module './routes/(marketing)/index' {
@@ -97,10 +97,12 @@ declare module './routes/(marketing)/index' {
 // Create and export the route tree
 
 interface marketingRouteRouteChildren {
+  marketingDocsRoute: typeof marketingDocsRoute
   marketingIndexRoute: typeof marketingIndexRoute
 }
 
 const marketingRouteRouteChildren: marketingRouteRouteChildren = {
+  marketingDocsRoute: marketingDocsRoute,
   marketingIndexRoute: marketingIndexRoute,
 }
 
@@ -110,18 +112,18 @@ const marketingRouteRouteWithChildren = marketingRouteRoute._addFileChildren(
 
 export interface FileRoutesByFullPath {
   '/': typeof marketingIndexRoute
-  '/docs': typeof DocsRoute
+  '/docs': typeof marketingDocsRoute
 }
 
 export interface FileRoutesByTo {
-  '/docs': typeof DocsRoute
+  '/docs': typeof marketingDocsRoute
   '/': typeof marketingIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/(marketing)': typeof marketingRouteRouteWithChildren
-  '/docs': typeof DocsRoute
+  '/(marketing)/docs': typeof marketingDocsRoute
   '/(marketing)/': typeof marketingIndexRoute
 }
 
@@ -130,18 +132,16 @@ export interface FileRouteTypes {
   fullPaths: '/' | '/docs'
   fileRoutesByTo: FileRoutesByTo
   to: '/docs' | '/'
-  id: '__root__' | '/(marketing)' | '/docs' | '/(marketing)/'
+  id: '__root__' | '/(marketing)' | '/(marketing)/docs' | '/(marketing)/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   marketingRouteRoute: typeof marketingRouteRouteWithChildren
-  DocsRoute: typeof DocsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   marketingRouteRoute: marketingRouteRouteWithChildren,
-  DocsRoute: DocsRoute,
 }
 
 export const routeTree = rootRoute
@@ -154,18 +154,19 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/(marketing)",
-        "/docs"
+        "/(marketing)"
       ]
     },
     "/(marketing)": {
       "filePath": "(marketing)/route.tsx",
       "children": [
+        "/(marketing)/docs",
         "/(marketing)/"
       ]
     },
-    "/docs": {
-      "filePath": "docs.tsx"
+    "/(marketing)/docs": {
+      "filePath": "(marketing)/docs.tsx",
+      "parent": "/(marketing)"
     },
     "/(marketing)/": {
       "filePath": "(marketing)/index.tsx",

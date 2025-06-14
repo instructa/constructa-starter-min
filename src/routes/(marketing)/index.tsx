@@ -19,24 +19,6 @@ function RouteComponent() {
                     The perfect starting point for your next web application
                 </p>
 
-                {/* Action Button - Shows different state based on auth */}
-                <div className="mt-10">
-                    {/* <SignedOut>
-                        <Link to="/auth/$pathname" params={{ pathname: "sign-in" }}>
-                            <Button className="rounded-full bg-primary px-8 py-6 font-medium text-base text-primary-foreground hover:bg-primary/90">
-                                Request Access <span className="ml-1">↗</span>
-                            </Button>
-                        </Link>
-                    </SignedOut>
-                    <SignedIn>
-                        <Link to="/dashboard">
-                            <Button className="rounded-full bg-primary px-8 py-6 font-medium text-base text-primary-foreground hover:bg-primary/90">
-                                Open Dashboard <span className="ml-1">↗</span>
-                            </Button>
-                        </Link>
-                    </SignedIn> */}
-                </div>
-
                 <p className="mt-4 text-muted-foreground text-xs uppercase tracking-wider">
                     Under heavy development
                 </p>
