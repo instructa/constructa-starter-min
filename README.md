@@ -1,7 +1,7 @@
-# 🚀 TanStack Starter
 
 <div align="center">
-  <p><strong>A modern React starter with shadcn/ui and Tailwind CSS 4</strong></p>
+  # Constructa Starter Min
+  <p><strong>A modern Web App Starter Kit based on Tanstack Starter using React, shadcn/ui and Tailwind CSS 4</strong></p>
   
   [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org/)
   [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
