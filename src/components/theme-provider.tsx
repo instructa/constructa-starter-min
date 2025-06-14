@@ -1,4 +1,3 @@
-import { useRouter } from "@tanstack/react-router"
 import { createContext, useContext, useEffect, useLayoutEffect, useState } from "react"
 import { type Theme, setTheme as setThemeServer } from "~/lib/theme"
 
@@ -14,8 +13,6 @@ export function ThemeProvider({
     initial: Theme
     children: React.ReactNode
 }) {
-    const router = useRouter()
-
     // 1 Initialize with the server value to avoid hydration mismatch
     const [theme, setThemeState] = useState<Theme>(initial)
 
@@ -59,8 +56,7 @@ export function ThemeProvider({
     const setTheme = (next: Theme) => {
         setThemeState(next)
         localStorage.setItem(LS_KEY, next)
-        setThemeServer({ data: next }) // cookie
-        router.invalidate() // refresh SSR class
+        setThemeServer({ data: next }) // persist cookie for future requests
     }
 
     return <ThemeCtx.Provider value={{ theme, setTheme }}>{children}</ThemeCtx.Provider>
