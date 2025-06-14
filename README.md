@@ -26,7 +26,7 @@
 
 ```bash
 # Clone the starter template (replace with your repo)
-npx gitpick git@github.com:instructa/tanstack-starter-min.git my-app
+npx gitpick git@github.com:instructa/constructa-starter-min.git my-app
 cd my-app
 ```
 
