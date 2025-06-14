@@ -22,13 +22,19 @@
 - **Node.js** 18+ 
 - **pnpm** (recommended package manager)
 
+### Download
+
+```bash
+# Clone the starter template (replace with your repo)
+npx gitpick git@github.com:instructa/tanstack-starter-min.git my-app
+cd my-app
+```
+
+> **Recommended:** This starter uses [gitpick](https://github.com/nrjdalal/gitpick) for easy cloning without `.git` directory, making it perfect for creating new projects from this template.
+
 ### Installation
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd tanstack-starter-instructa
-
 # Install dependencies
 pnpm install
 
