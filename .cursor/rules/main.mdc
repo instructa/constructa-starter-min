@@ -7,7 +7,6 @@ alwaysApply: true
 
 - Always get recommendation and best practice considering latest NOW date
 - Never use `npx shadcn-ui@latest`! Always use `npx shadcn@latest`.
-- Always use pnpm as the package manager.
 - All route files must be written in **TypeScript React** (`.tsx`).
 - Use alias imports: `~` resolves to root `./src`.
 - Don't use default exports in route files.
