@@ -15,6 +15,7 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as marketingRouteRouteImport } from './routes/(marketing)/route'
 import { Route as marketingIndexRouteImport } from './routes/(marketing)/index'
+import { Route as marketingPricingRouteImport } from './routes/(marketing)/pricing'
 import { Route as marketingDocsRouteImport } from './routes/(marketing)/docs'
 
 // Create/Update Routes
@@ -27,6 +28,12 @@ const marketingRouteRoute = marketingRouteRouteImport.update({
 const marketingIndexRoute = marketingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => marketingRouteRoute,
+} as any)
+
+const marketingPricingRoute = marketingPricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => marketingRouteRoute,
 } as any)
 
@@ -52,6 +59,13 @@ declare module '@tanstack/react-router' {
       path: '/docs'
       fullPath: '/docs'
       preLoaderRoute: typeof marketingDocsRouteImport
+      parentRoute: typeof marketingRouteRouteImport
+    }
+    '/(marketing)/pricing': {
+      id: '/(marketing)/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof marketingPricingRouteImport
       parentRoute: typeof marketingRouteRouteImport
     }
     '/(marketing)/': {
@@ -84,6 +98,15 @@ declare module './routes/(marketing)/docs' {
     FileRoutesByPath['/(marketing)/docs']['fullPath']
   >
 }
+declare module './routes/(marketing)/pricing' {
+  const createFileRoute: CreateFileRoute<
+    '/(marketing)/pricing',
+    FileRoutesByPath['/(marketing)/pricing']['parentRoute'],
+    FileRoutesByPath['/(marketing)/pricing']['id'],
+    FileRoutesByPath['/(marketing)/pricing']['path'],
+    FileRoutesByPath['/(marketing)/pricing']['fullPath']
+  >
+}
 declare module './routes/(marketing)/index' {
   const createFileRoute: CreateFileRoute<
     '/(marketing)/',
@@ -98,11 +121,13 @@ declare module './routes/(marketing)/index' {
 
 interface marketingRouteRouteChildren {
   marketingDocsRoute: typeof marketingDocsRoute
+  marketingPricingRoute: typeof marketingPricingRoute
   marketingIndexRoute: typeof marketingIndexRoute
 }
 
 const marketingRouteRouteChildren: marketingRouteRouteChildren = {
   marketingDocsRoute: marketingDocsRoute,
+  marketingPricingRoute: marketingPricingRoute,
   marketingIndexRoute: marketingIndexRoute,
 }
 
@@ -113,10 +138,12 @@ const marketingRouteRouteWithChildren = marketingRouteRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof marketingIndexRoute
   '/docs': typeof marketingDocsRoute
+  '/pricing': typeof marketingPricingRoute
 }
 
 export interface FileRoutesByTo {
   '/docs': typeof marketingDocsRoute
+  '/pricing': typeof marketingPricingRoute
   '/': typeof marketingIndexRoute
 }
 
@@ -124,15 +151,21 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/(marketing)': typeof marketingRouteRouteWithChildren
   '/(marketing)/docs': typeof marketingDocsRoute
+  '/(marketing)/pricing': typeof marketingPricingRoute
   '/(marketing)/': typeof marketingIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docs'
+  fullPaths: '/' | '/docs' | '/pricing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/docs' | '/'
-  id: '__root__' | '/(marketing)' | '/(marketing)/docs' | '/(marketing)/'
+  to: '/docs' | '/pricing' | '/'
+  id:
+    | '__root__'
+    | '/(marketing)'
+    | '/(marketing)/docs'
+    | '/(marketing)/pricing'
+    | '/(marketing)/'
   fileRoutesById: FileRoutesById
 }
 
@@ -161,11 +194,16 @@ export const routeTree = rootRoute
       "filePath": "(marketing)/route.tsx",
       "children": [
         "/(marketing)/docs",
+        "/(marketing)/pricing",
         "/(marketing)/"
       ]
     },
     "/(marketing)/docs": {
       "filePath": "(marketing)/docs.tsx",
+      "parent": "/(marketing)"
+    },
+    "/(marketing)/pricing": {
+      "filePath": "(marketing)/pricing.tsx",
       "parent": "/(marketing)"
     },
     "/(marketing)/": {
