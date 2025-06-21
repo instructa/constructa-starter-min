@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as marketingRouteRouteImport } from './routes/(marketing)/route'
 import { Route as marketingIndexRouteImport } from './routes/(marketing)/index'
 import { Route as marketingDocsRouteImport } from './routes/(marketing)/docs'
+import { Route as marketingAboutRouteImport } from './routes/(marketing)/about'
 
 // Create/Update Routes
 
@@ -36,6 +37,12 @@ const marketingDocsRoute = marketingDocsRouteImport.update({
   getParentRoute: () => marketingRouteRoute,
 } as any)
 
+const marketingAboutRoute = marketingAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => marketingRouteRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof marketingRouteRouteImport
       parentRoute: typeof rootRoute
+    }
+    '/(marketing)/about': {
+      id: '/(marketing)/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof marketingAboutRouteImport
+      parentRoute: typeof marketingRouteRouteImport
     }
     '/(marketing)/docs': {
       id: '/(marketing)/docs'
@@ -75,6 +89,15 @@ declare module './routes/(marketing)/route' {
     FileRoutesByPath['/(marketing)']['fullPath']
   >
 }
+declare module './routes/(marketing)/about' {
+  const createFileRoute: CreateFileRoute<
+    '/(marketing)/about',
+    FileRoutesByPath['/(marketing)/about']['parentRoute'],
+    FileRoutesByPath['/(marketing)/about']['id'],
+    FileRoutesByPath['/(marketing)/about']['path'],
+    FileRoutesByPath['/(marketing)/about']['fullPath']
+  >
+}
 declare module './routes/(marketing)/docs' {
   const createFileRoute: CreateFileRoute<
     '/(marketing)/docs',
@@ -97,11 +120,13 @@ declare module './routes/(marketing)/index' {
 // Create and export the route tree
 
 interface marketingRouteRouteChildren {
+  marketingAboutRoute: typeof marketingAboutRoute
   marketingDocsRoute: typeof marketingDocsRoute
   marketingIndexRoute: typeof marketingIndexRoute
 }
 
 const marketingRouteRouteChildren: marketingRouteRouteChildren = {
+  marketingAboutRoute: marketingAboutRoute,
   marketingDocsRoute: marketingDocsRoute,
   marketingIndexRoute: marketingIndexRoute,
 }
@@ -112,10 +137,12 @@ const marketingRouteRouteWithChildren = marketingRouteRoute._addFileChildren(
 
 export interface FileRoutesByFullPath {
   '/': typeof marketingIndexRoute
+  '/about': typeof marketingAboutRoute
   '/docs': typeof marketingDocsRoute
 }
 
 export interface FileRoutesByTo {
+  '/about': typeof marketingAboutRoute
   '/docs': typeof marketingDocsRoute
   '/': typeof marketingIndexRoute
 }
@@ -123,16 +150,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/(marketing)': typeof marketingRouteRouteWithChildren
+  '/(marketing)/about': typeof marketingAboutRoute
   '/(marketing)/docs': typeof marketingDocsRoute
   '/(marketing)/': typeof marketingIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docs'
+  fullPaths: '/' | '/about' | '/docs'
   fileRoutesByTo: FileRoutesByTo
-  to: '/docs' | '/'
-  id: '__root__' | '/(marketing)' | '/(marketing)/docs' | '/(marketing)/'
+  to: '/about' | '/docs' | '/'
+  id:
+    | '__root__'
+    | '/(marketing)'
+    | '/(marketing)/about'
+    | '/(marketing)/docs'
+    | '/(marketing)/'
   fileRoutesById: FileRoutesById
 }
 
@@ -160,9 +193,14 @@ export const routeTree = rootRoute
     "/(marketing)": {
       "filePath": "(marketing)/route.tsx",
       "children": [
+        "/(marketing)/about",
         "/(marketing)/docs",
         "/(marketing)/"
       ]
+    },
+    "/(marketing)/about": {
+      "filePath": "(marketing)/about.tsx",
+      "parent": "/(marketing)"
     },
     "/(marketing)/docs": {
       "filePath": "(marketing)/docs.tsx",
