@@ -35,6 +35,7 @@
     "framer-motion": "^12.16.0",
     "lucide-react": "^0.513.0",
     "motion": "^12.16.0",
+    "nitro": "npm:nitro-nightly@latest",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sonner": "^2.0.5",
