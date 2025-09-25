@@ -1,6 +1,7 @@
+import { createFileRoute } from "@tanstack/react-router"
 import GradientOrb from "~/components/gradient-orb"
 
-export const Route = createFileRoute({
+export const Route = createFileRoute("/(marketing)/")({
     component: RouteComponent
 })
 
