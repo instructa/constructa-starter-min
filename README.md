@@ -10,11 +10,13 @@
 
 ## ✨ Features
 
-- **[TanStack Start](https://tanstack.com/start)** - Modern full-stack React framework
+- **[TanStack Start RC1](https://tanstack.com/start)** - Modern full-stack React framework
 - **[shadcn/ui](https://ui.shadcn.com/)** - Beautiful, accessible component library
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - Modern utility-first CSS framework
 - **[TypeScript](https://typescriptlang.org/)** - Full type safety
 - **[TanStack Router](https://tanstack.com/router)** - Type-safe file-based routing
+- **[Browser Echo](https://github.com/browser-echo/browser-echo)** - Advanced client-side logging and debugging
+- **[Unplugin Icons](https://github.com/antfu/unplugin-icons)** - Automatic icon loading and optimization
 
 ## 🚀 Quick Start
 
@@ -74,10 +76,12 @@ src/
 
 | Technology | Purpose | Documentation |
 |------------|---------|---------------|
-| **TanStack Start** | Full-stack framework | [Docs](https://tanstack.com/start) |
+| **TanStack Start RC1** | Full-stack framework | [Docs](https://tanstack.com/start) |
 | **shadcn/ui** | Component library | [Docs](https://ui.shadcn.com/) |
 | **Tailwind CSS v4** | Styling framework | [Docs](https://tailwindcss.com/) |
 | **TypeScript** | Type safety | [Docs](https://typescriptlang.org/) |
+| **Browser Echo** | Client-side logging | [Docs](https://github.com/browser-echo/browser-echo) |
+| **Unplugin Icons** | Icon optimization | [Docs](https://github.com/antfu/unplugin-icons) |
 
 ## 🔧 Configuration
 
