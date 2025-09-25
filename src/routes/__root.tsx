@@ -1,5 +1,7 @@
 import type { QueryClient } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router"
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 import type * as React from "react"
 import { Toaster } from "sonner"
 import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary"
@@ -7,6 +9,7 @@ import { NotFound } from "~/components/NotFound"
 import { ThemeInitScript } from "~/components/theme-init-script"
 import { ThemeProvider } from "~/components/theme-provider"
 import { getTheme } from "~/lib/theme"
+import type { Theme } from "~/lib/theme"
 import { seo } from "~/utils/seo"
 import appCss from "../styles/app.css?url"
 import customCss from "../styles/custom.css?url"
@@ -74,6 +77,12 @@ function RootComponent() {
     return (
         <RootDocument>
             <Outlet />
+            {import.meta.env.DEV ? (
+                <>
+                    <ReactQueryDevtools buttonPosition="bottom-right" />
+                    <TanStackRouterDevtools />
+                </>
+            ) : null}
         </RootDocument>
     )
 }
