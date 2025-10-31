@@ -31,3 +31,5 @@ output.txt
 package-lock.json
 yarn.lock
 src/routeTree.gen.ts
+.ck
+.spezi
