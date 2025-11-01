@@ -1,4 +1,4 @@
-import { useTheme } from './theme-provider';
+import { useTheme } from "~/components/theme-provider";
 
 // TanStack Start - Client-only rendering pattern
 // This ensures the theme toggle only renders on client side

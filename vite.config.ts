@@ -37,8 +37,5 @@ export default ({ mode }: ConfigEnv) => {
       }),
       tailwindcss(),
     ],
-    ssr: {
-      noExternal: ['@mastra/*'],
-    },
   });
 };

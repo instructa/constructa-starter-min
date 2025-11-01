@@ -28,6 +28,23 @@
             "name": "@tanstack/react-start/server",
             "importNames": ["createServerFileRoute"],
             "message": "Use createFileRoute + server handlers instead."
+          },
+          {
+            "name": "@tanstack/react-start",
+            "importNames": ["serverOnly", "clientOnly"],
+            "message": "Use createServerOnlyFn and createClientOnlyFn instead."
+          },
+          {
+            "name": "@tanstack/react-start/server",
+            "importNames": [
+              "getWebRequest",
+              "getHeaders",
+              "getHeader",
+              "setHeaders",
+              "setHeader",
+              "parseCookies"
+            ],
+            "message": "RC1 renamed: getWebRequest→getRequest, getHeaders→getRequestHeaders, getHeader→getRequestHeader, setHeaders→setResponseHeaders, setHeader→setResponseHeader, parseCookies→getCookies"
           }
         ],
         "patterns": ["*createAPIFileRoute*", "*createServerFileRoute*"]
