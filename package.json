@@ -45,7 +45,7 @@
     "tailwindcss": "^4.1.8",
     "vaul": "^1.1.2",
     "vite": "^7.1.6",
-    "zod": "^3.25.56"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -65,6 +65,7 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^5.0.3",
     "autoprefixer": "^10.4.21",
+    "@t3-oss/env-core": "^0.7.1",
     "class-variance-authority": "^0.7.1",
     "dotenv": "^16.5.0",
     "oxlint": "^1.0.0",
