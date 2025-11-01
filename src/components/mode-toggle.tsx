@@ -1,8 +1,7 @@
-import { useTheme } from "~/components/theme-provider";
+import { ClientOnly } from '@tanstack/react-router';
+import { useTheme } from '~/components/theme-provider';
 
-// TanStack Start - Client-only rendering pattern
-// This ensures the theme toggle only renders on client side
-export function ModeToggle() {
+function ModeToggleInner() {
   const { theme, setTheme } = useTheme();
   const next = theme === 'light' ? 'dark' : 'light';
 
@@ -10,5 +9,12 @@ export function ModeToggle() {
     <button type="button" onClick={() => setTheme(next)}>
       {theme === 'light' ? '☀️' : '🌙'}
     </button>
+  );
+}
+export function ModeToggle() {
+  return (
+    <ClientOnly fallback={<button type="button">☀️</button>}>
+      <ModeToggleInner />
+    </ClientOnly>
   );
 }

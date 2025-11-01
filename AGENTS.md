@@ -98,26 +98,6 @@
 
 # TanStack Start best practices
 
-## Static server functions
-
-* `createServerFn({ method: 'GET' }).middleware([staticFunctionMiddleware])` runs at build time; cached as static JSON by key `(fnId + params hash)`; prerender embeds data in HTML; later client calls fetch JSON.
-* Custom cache via `createServerFnStaticCache` and `setServerFnStaticCache`.
-
-## Server functions
-
-* RPC-style, server-only; no stable public URL; access request ctx/env/cookies; return primitives/JSON/`Response`; can redirect/notFound/error.
-* Define: `createServerFn(opts?).handler(async ctx => { ... })`.
-* Options: `method: 'GET'|'POST'`.
-* Callable from server/client/other server fns.
-* Single param: primitives/objects/`FormData`/`ReadableStream`/`Promise`.
-* Validation & types: `.inputValidator(input => validated)` (works with Zod); identity validator for typing only.
-* Context (`@tanstack/react-start/server`): `getRequest`, `getRequestHeaders`/`getRequestHeader`, `setResponseHeaders`/`setResponseHeader`, `getCookies`, sessions, multipart, etc.
-* Returns: primitives/JSON by default; can set headers/status; return `Response` for custom responses/SSE.
-* Errors & control flow: throw → 500; `redirect(...)` from `@tanstack/react-router`; `notFound()`; supports `AbortSignal`.
-* Usage: in route lifecycles (`loader`/`beforeLoad`) redirects/notFounds auto-handled; in components use `useServerFn(fn)` and integrate with React Query; elsewhere handle redirects/notFounds manually.
-* No-JS support: use `<form action={serverFn.url} method="POST">` (pass args via inputs; `encType="multipart/form-data"` as needed); return value unavailable to client JS → use HTTP redirects to trigger loader refresh.
-* Static variant: see Static server functions above.
-
 ## Selective SSR
 
 * Default `ssr: true` (change via `getRouter({ defaultSsr: false })`). SPA mode disables all server loaders/SSR.
