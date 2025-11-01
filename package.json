@@ -10,7 +10,8 @@
     "test": "vitest",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "rules:apply": "ruler apply --nested"
+    "rules:apply": "ruler apply --nested",
+    "prepare": "ruler apply --nested"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
